@@ -4,17 +4,18 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Auth with ChangeNotifier {
-   String _token;
-   DateTime _expiryDate;
-   String _userId;
+   late String _token='';
+   late DateTime _expiryDate;
+   late String _userId;
+
 
   bool get isAuth{
     // ignore: unnecessary_null_comparison
-    return _token!=null;
+    return _token.isNotEmpty;
   }
 
   String get token{
-    if(_expiryDate!=null && _expiryDate.isAfter(DateTime.now())&&_token!=null){
+    if(_expiryDate.toString().isNotEmpty && _expiryDate.isAfter(DateTime.now())&&_token.isNotEmpty){
       return _token;
     }
     return null.toString();
